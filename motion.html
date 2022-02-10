@@ -1,0 +1,54 @@
+<html>
+<head>
+<script>
+function sub() {
+   var angle = document.getElementById('angle').value ;
+   var vnaught = document.getElementById('Vnaught').value ;
+   fulltest(angle, vnaught, false);
+}
+function fulltest (ø, Vo,overide) {
+   // var scrw = window.screen.width*window.devicePixelRatio
+   // var scrh = window.screen.height*window.devicePixelRatio
+   var canvas = document.getElementById("myCanvas");
+   var ctx = canvas.getContext("2d");
+   ctx.moveTo(0, 0);
+   var CPS = 1000
+   var T = 0.0
+   var Vox = Math.cos(ø*Math.PI/180)*Vo
+   var Voy = Math.sin(ø*Math.PI/180)*Vo
+   if((((Voy**3)*CPS) > 1000000000)&& overide == false) { alert ('No.'); return (" ") }
+   var y = 0
+   while (y >= 0) {
+       T += (1/CPS)
+       var x = Vox*T
+       y = (-4.9*(T**2))+Voy*T//The bug was that Javascipt can't do fucking PEMDAS correctly. So OF COURSE the fix was putting parethesese around the damn exponent, because THAT makes sense
+//Do NOT change it to be -Voy*T, creates a ram eater by going up infinitly
+//(resolved)For some reason once the y goes negative it goes up and down a few times before going below 5, and when t increases by less than one it has repeating values. That is when this problem becomes visible
+       if(ø == 90) { x = 0 }
+       //if(!(ø%2 === 0 || ø%2 === 1)) { return ( "Error code :Pineapple:") }
+       //if(!(Vo%2 === 0 || Vo%2 === 1 )) { return ( "Error code :Pear:" ) }
+       //if(!((ø%2 === 0 || ø%2 === 1) && (Vo%2 === 0 || Vo%2 === 1))) { return ( "Error code :Apple:" ) }
+       if(y < -15.0) { return ( "Error code :Peach:" ) }
+       //if(y > (Voy^3.0+100)) { return ( "Error code :Tangerine:" ) }
+       ctx.lineTo(x, y);
+  }
+  ctx.stroke();
+}
+function rect() {
+	var canvas = document.getElementById("myCanvas");
+	var ctx = canvas.getContext("2d");
+	ctx.fillStyle = "#FF0000";
+	ctx.fillRect(0, 0, 1, 1);
+	ctx.fillRect(1, 1, 2, 2);
+}
+</script>
+</head>
+<body onload="rect()">
+<canvas id="myCanvas" height="200" width="200" style="border:1px solid #000000;">
+</canvas>
+<form>
+Angle: <input type="text" id="angle" name="angle" value="30">
+Vnaught: <input type="text" id="Vnaught" name="Vnaught" value="50">
+<button type="button" onClick="sub()">Draw!</button>
+</form>
+</body>
