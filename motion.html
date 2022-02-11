@@ -11,16 +11,17 @@ function fulltest (ø, Vo,overide) {
    // var scrh = window.screen.height*window.devicePixelRatio
    var canvas = document.getElementById("myCanvas");
    var ctx = canvas.getContext("2d");
-   ctx.moveTo(0, 0);
+   ctx.moveTo(0, 750);
    var CPS = 1000
    var T = 0.0
    var Vox = Math.cos(ø*Math.PI/180)*Vo
    var Voy = Math.sin(ø*Math.PI/180)*Vo
-   if((((Voy**3)*CPS) > 1000000000)&& overide == false) { alert ('No.'); return (" ") }
    var y = 0
-   while (y >= 0) {
+   var steps = 0
+   while (y >= 0 && steps < 35000) {
        T += (1/CPS)
        var x = Vox*T
+       steps += 1
        y = (-4.9*(T**2))+Voy*T//The bug was that Javascipt can't do fucking PEMDAS correctly. So OF COURSE the fix was putting parethesese around the damn exponent, because THAT makes sense
 //Do NOT change it to be -Voy*T, creates a ram eater by going up infinitly
 //(resolved)For some reason once the y goes negative it goes up and down a few times before going below 5, and when t increases by less than one it has repeating values. That is when this problem becomes visible
@@ -30,25 +31,25 @@ function fulltest (ø, Vo,overide) {
        //if(!((ø%2 === 0 || ø%2 === 1) && (Vo%2 === 0 || Vo%2 === 1))) { return ( "Error code :Apple:" ) }
        if(y < -15.0) { return ( "Error code :Peach:" ) }
        //if(y > (Voy^3.0+100)) { return ( "Error code :Tangerine:" ) }
-       ctx.lineTo(x, y);
+       ctx.lineTo(x, (750-y));
   }
   ctx.stroke();
 }
 function rect() {
 	var canvas = document.getElementById("myCanvas");
 	var ctx = canvas.getContext("2d");
-	ctx.fillStyle = "#FF0000";
-	ctx.fillRect(0, 0, 1, 1);
-	ctx.fillRect(1, 1, 2, 2);
+	ctx.fillStyle = "#FFFFFF";
+	ctx.fillRect(0, 0, 1420, 750);
 }
 </script>
 </head>
 <body onload="rect()">
-<canvas id="myCanvas" height="200" width="200" style="border:1px solid #000000;">
-</canvas>
 <form>
-Angle: <input type="text" id="angle" name="angle" value="30">
+  Angle: <input type="text" id="angle" name="angle" value="30">
 Vnaught: <input type="text" id="Vnaught" name="Vnaught" value="50">
 <button type="button" onClick="sub()">Draw!</button>
+<button type="button" onClick="rect()">Clear</button>
 </form>
+<canvas id="myCanvas" height="750" width="1420" style="border:1px solid #000000;">
+</canvas>
 </body>
