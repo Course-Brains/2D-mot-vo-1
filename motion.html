@@ -9,7 +9,7 @@ function sub() {
 function fulltest (ø, Vo,overide) {;
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  ctx.moveTo(0, 750);
+  ctx.moveTo(0, canvas.height);
   var CPS = 1000
   var T = 0.0
   var Vox = Math.cos(ø*Math.PI/180)*Vo
@@ -23,7 +23,7 @@ function fulltest (ø, Vo,overide) {;
     y = (-4.9*(T**2))+Voy*T
     if(ø == 90) { x = 0 };
     if(y < -15.0) { return ( "Error code :Peach:" ) };
-    ctx.lineTo(x, (750-y));
+    ctx.lineTo(x, (canvas.height-y));
   }
   ctx.stroke();
 }
