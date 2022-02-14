@@ -2,42 +2,42 @@
 <head>
 <script>
 function sub() {
-   var angle = document.getElementById('angle').value ;
-   var vnaught = document.getElementById('Vnaught').value ;
-   fulltest(angle, vnaught, false);
+  var angle = document.getElementById('angle').value ;
+  var vnaught = document.getElementById('Vnaught').value ;
+  fulltest(angle, vnaught, false);
 }
 function fulltest (ø, Vo,overide) {;
-   var canvas = document.getElementById("myCanvas");
-   var ctx = canvas.getContext("2d");
-   ctx.moveTo(0, 750);
-   var CPS = 1000
-   var T = 0.0
-   var Vox = Math.cos(ø*Math.PI/180)*Vo
-   var Voy = Math.sin(ø*Math.PI/180)*Vo
-   var y = 0
-   var steps = 0
-   while (y >= 0 && steps < 35000) {
-       T += (1/CPS)
-       var x = Vox*T
-       steps += 1
-       y = (-4.9*(T**2))+Voy*T
-       if(ø == 90) { x = 0 };
-       if(y < -15.0) { return ( "Error code :Peach:" ) };
-       ctx.lineTo(x, (750-y));
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  ctx.moveTo(0, 750);
+  var CPS = 1000
+  var T = 0.0
+  var Vox = Math.cos(ø*Math.PI/180)*Vo
+  var Voy = Math.sin(ø*Math.PI/180)*Vo
+  var y = 0
+  var steps = 0
+  while (y >= 0 && steps < 35000) {
+    T += (1/CPS)
+    var x = Vox*T
+    steps += 1
+    y = (-4.9*(T**2))+Voy*T
+    if(ø == 90) { x = 0 };
+    if(y < -15.0) { return ( "Error code :Peach:" ) };
+    ctx.lineTo(x, (750-y));
   }
   ctx.stroke();
 }
 function rect() {
-	var canvas = document.getElementById("myCanvas");
-	var ctx = canvas.getContext("2d");
-	ctx.clearRect(0,0,canvas.width,canvas.height);
+  var canvas = document.getElementById("myCanvas");
+  var ctx = canvas.getContext("2d");
+  ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.beginPath();
 }
 </script>
 </head>
 <body onload="rect()">
 <form>
-  Angle: <input type="text" id="angle" name="angle" value="30">
+Angle: <input type="text" id="angle" name="angle" value="30">
 Vnaught: <input type="text" id="Vnaught" name="Vnaught" value="50">
 <button type="button" onClick="sub()">Draw!</button>
 <button type="button" onClick="rect()">Clear</button>
