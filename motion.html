@@ -32,7 +32,7 @@ function rect() {
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   ctx.canvas.width = (window.innerWidth - 25);
-  ctx.canvas.height = (window.innerHeight - 50)
+  ctx.canvas.height = (window.innerHeight - 70)
   ctx.clearRect(0,0,canvas.width,canvas.height);
   ctx.beginPath();
 }
@@ -42,7 +42,7 @@ function rect() {
 <form>
 Angle: <input type="text" id="angle" name="angle" value="30">
 Int Velocity: <input type="text" id="Vnaught" name="Vnaught" value="50">
-<button type="button" onClick="sub()">Draw!</button>
+<button type="button" onClick="sub()">Draw</button>
 <button type="button" onClick="rect()">Clear</button>
 </form>
 <canvas id="myCanvas" height="100" width="100" style="border:1px solid #000000;">
