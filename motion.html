@@ -14,14 +14,14 @@ function drawabit (T,Vox,Voy,CPS,x,y) {
   ctx.moveTo(x,canvas.height - y);
   do {
     T += (1/CPS);
-    x = Vox*T
-    y = (-4.9*(T**2))+Voy*T
+    x = (Vox*T)*2
+    y = ((-4.9*(T**2))+Voy*T)*2
     if(y < -15.0) { return ( "Error code :Peach:" ) };
     ctx.lineTo(x, (canvas.height-y));
   } while (y >= 0 && T < end) ;
   ctx.stroke();
   if(T < 35 && y > 0) {
-    setTimeout(drawabit,33,T,Vox,Voy,CPS,x,y);
+    setTimeout(drawabit,10,T,Vox,Voy,CPS,x,y);
   }
 }
 function fulltest (theta, Vo) {
@@ -31,7 +31,7 @@ function fulltest (theta, Vo) {
   var Vox = Math.cos(theta*Math.PI/180)*Vo
   var Voy = Math.sin(theta*Math.PI/180)*Vo
   var y = 0
-  setTimeout(drawabit,100/3,T,Vox,Voy,CPS,0,canvas.height);
+  setTimeout(drawabit,10,T,Vox,Voy,CPS,0,canvas.height);
 }
 function rect() {
   var canvas = document.getElementById("myCanvas");
