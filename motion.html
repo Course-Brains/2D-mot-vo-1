@@ -6,14 +6,14 @@ function sub() {
   var vnaught = document.getElementById('Vnaught').value ;
   fulltest(angle, vnaught, false);
 }
-function fulltest (ø, Vo,overide) {;
+function fulltest (theta, Vo,overide) {;
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   ctx.moveTo(0, canvas.height);
   var CPS = 1000
   var T = 0.0
-  var Vox = Math.cos(ø*Math.PI/180)*Vo
-  var Voy = Math.sin(ø*Math.PI/180)*Vo
+  var Vox = Math.cos(theta*Math.PI/180)*Vo
+  var Voy = Math.sin(theta*Math.PI/180)*Vo
   var y = 0
   var steps = 0
   while (y >= 0 && steps < 35000) {
@@ -21,7 +21,7 @@ function fulltest (ø, Vo,overide) {;
     var x = Vox*T
     steps += 1
     y = (-4.9*(T**2))+Voy*T
-    if(ø == 90) { x = 0 };
+    if (theta == 90) { x = 0 };
     if(y < -15.0) { return ( "Error code :Peach:" ) };
     ctx.lineTo(x, (canvas.height-y));
   }
