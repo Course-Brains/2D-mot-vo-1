@@ -5,28 +5,33 @@
 function sub() {
   var angle = document.getElementById('angle').value ;
   var vnaught = document.getElementById('Vnaught').value ;
-  fulltest(angle, vnaught, false);
+  fulltest(angle, vnaught);
 }
-function fulltest (theta, Vo,overide) {;
+function drawabit (T,Vox,Voy,CPS,x,y) {
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  ctx.moveTo(0, canvas.height);
+  var end = T + (1/30.0);
+  ctx.moveTo(x,canvas.height - y);
+  do {
+    T += (1/CPS);
+    x = Vox*T
+    y = (-4.9*(T**2))+Voy*T
+    if(y < -15.0) { return ( "Error code :Peach:" ) };
+    ctx.lineTo(x, (canvas.height-y));
+  } while (y >= 0 && T < end) ;
+  ctx.stroke();
+  if(T < 35 && y > 0) {
+    setTimeout(drawabit,33,T,Vox,Voy,CPS,x,y);
+  }
+}
+function fulltest (theta, Vo) {
+  var canvas = document.getElementById("myCanvas");
   var CPS = 1000
   var T = 0.0
   var Vox = Math.cos(theta*Math.PI/180)*Vo
   var Voy = Math.sin(theta*Math.PI/180)*Vo
   var y = 0
-  var steps = 0
-  while (y >= 0 && steps < 35000) {
-    T += (1/CPS)
-    var x = Vox*T
-    steps += 1
-    y = (-4.9*(T**2))+Voy*T
-    if (theta == 90) { x = 0 };
-    if(y < -15.0) { return ( "Error code :Peach:" ) };
-    ctx.lineTo(x, (canvas.height-y));
-  }
-  ctx.stroke();
+  setTimeout(drawabit,100/3,T,Vox,Voy,CPS,0,canvas.height);
 }
 function rect() {
   var canvas = document.getElementById("myCanvas");
