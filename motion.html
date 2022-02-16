@@ -20,7 +20,7 @@ function drawabit (T,Vox,Voy,CPS,x,y) {
     ctx.lineTo(x, (canvas.height-y));
   } while (y >= 0 && T < end) ;
   ctx.stroke();
-  if(T < 35 && y > 0) {
+  if(T < 35 && y > 0 && x < canvas.width) {
     setTimeout(drawabit,10,T,Vox,Voy,CPS,x,y);
   }
 }
