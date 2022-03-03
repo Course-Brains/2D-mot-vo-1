@@ -15,11 +15,11 @@ function drawabit (T,Vox,Voy,CPS,x,y) {
   do {
     T += (1/CPS);
     x = (Vox*T)*2
-    y = ((-4.9*(T**2))+Voy*T)*2
-    if(y < -15.0) { return ( "Error code :Peach:" ) };
+    y = ((-4.9*(T**2))+Voy*T)*2;
     ctx.lineTo(x, (canvas.height-y));
   } while (y >= 0 && T < end) ;
   ctx.stroke();
+  ctx.beginPath();
   if(T < 35 && y > 0 && x < canvas.width) {
     setTimeout(drawabit,10,T,Vox,Voy,CPS,x,y);
   }
@@ -39,7 +39,6 @@ function rect() {
   ctx.canvas.width = (window.innerWidth - 25);
   ctx.canvas.height = (window.innerHeight - 90)
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  ctx.beginPath();
 }
 </script>
 </head>
