@@ -34,6 +34,11 @@ function fulltest (theta, Vo) {
   setTimeout(drawabit,10,T,Vox,Voy,CPS,0,canvas.height);
 }
 function rect() {
+  document.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        sub();
+    }
+  });
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
   ctx.canvas.width = (window.innerWidth - 25);
