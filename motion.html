@@ -47,6 +47,7 @@ function fulltest (theta, Vo) {
   setTimeout(drawabit,10,T,Vox,Voy,CPS,0,canvas.height);
 }
 function rect() {
+  number = 0;
   document.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
         sub();
@@ -66,7 +67,7 @@ Angle: <input type="text" id="angle" name="angle" value="30">
 Int Velocity: <input type="text" id="Vnaught" name="Vnaught" value="50">m/s
 <button type="button" onClick="sub()">Draw</button>
 <button type="button" onClick="rect()">Clear</button>
-<button type="button" onClick="">Butter mode!</button>
+<button type="button" onClick="butter()">Butter mode!</button>
 </form>
 <canvas id="myCanvas" height="100" width="100" style="border:1px solid #000000;">
 </canvas>
