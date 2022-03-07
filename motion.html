@@ -31,7 +31,7 @@ function drawabit (T,Vox,Voy,CPS,x,y) {
     y = ((-4.9*(T**2))+Voy*T)*2;
     ctx.lineTo(x, (canvas.height-y));
   } while (y >= 0 && T < end) ;
-  console.log("Velocity is " + "(" + Vox + "," + (Voy-(9.8*T)) + ")");
+  console.log("(" + T + "," + Vox + "," + (Voy-(9.8*T)) + ")");
   ctx.stroke();
   ctx.beginPath();
   if(T < 35 && y > 0 && x < canvas.width) {
