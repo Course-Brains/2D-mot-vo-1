@@ -2,15 +2,28 @@
 <head>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <script>
+var smoothness = 30;
+var enabled = false;
+function butter () {
+  if(enabled == false) {
+    enabled = true;
+    smoothness = 100;
+  }
+  if(enabled == true) {
+    enabled = false;
+    smoothness = 30;
+  }
+} 
 function sub() {
   var angle = document.getElementById('angle').value ;
   var vnaught = document.getElementById('Vnaught').value ;
+  if(isNaN(angle) == true || isNaN(vnaught) == true) {alert("How hard can it be to understand that numbers go in the area asking for numbers?")}
   fulltest(angle, vnaught);
 }
 function drawabit (T,Vox,Voy,CPS,x,y) {
   var canvas = document.getElementById("myCanvas");
   var ctx = canvas.getContext("2d");
-  var end = T + (1/30.0);
+  var end = T + (1/smoothness);
   ctx.moveTo(x,canvas.height - y);
   do {
     T += (1/CPS);
@@ -28,8 +41,8 @@ function fulltest (theta, Vo) {
   var canvas = document.getElementById("myCanvas");
   var CPS = 1000
   var T = 0.0
-  var Vox = Math.cos(theta*Math.PI/180)*Vo
-  var Voy = Math.sin(theta*Math.PI/180)*Vo
+  var Vox = Math.cos((theta%90)*Math.PI/180)*Vo
+  var Voy = Math.sin((theta%90)*Math.PI/180)*Vo
   var y = 0
   setTimeout(drawabit,10,T,Vox,Voy,CPS,0,canvas.height);
 }
@@ -53,6 +66,7 @@ Angle: <input type="text" id="angle" name="angle" value="30">
 Int Velocity: <input type="text" id="Vnaught" name="Vnaught" value="50">m/s
 <button type="button" onClick="sub()">Draw</button>
 <button type="button" onClick="rect()">Clear</button>
+<button type="button" onClick="">Butter mode!</button>
 </form>
 <canvas id="myCanvas" height="100" width="100" style="border:1px solid #000000;">
 </canvas>
